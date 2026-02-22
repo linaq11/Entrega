@@ -12,7 +12,7 @@ format:
     fontsize: 11pt
     linestretch: 1.15
     geometry: margin=1in
-    toc: true
+    toc: false
     toc-depth: 3
     number-sections: true
     colorlinks: true
@@ -36,22 +36,10 @@ execute:
   message: false
 ---
 
-```{r}
-#| label: setup
-#| include: false
-
-source("unal_julia_setup.R")
-source("j_eval_j_plot.r")   # tu helper del curso
-
-stopifnot(exists("j_eval"))
-
-# prueba
-j_eval("1+1")
-
-```
 
 ## Ejercicio 1
 ```{r} 
+#| label: ejercicio1_macarena
 j_eval(r"-(
 registro_crudo = "   pnn  seRRania de la mACaRena   "
 
@@ -69,6 +57,7 @@ println("El área protegida limpia es: $registro_oficial y su nombre tiene $long
 
 ## Ejercicio 2
 ```{r} 
+#| label: ejercicio2_galeras
 j_eval(r"-(
 using Printf
 
@@ -99,7 +88,8 @@ println("Área afectada: $area_fmt m2")
 ```
 
 
-## Ejercicio 1 ¿Por qué es una mala práctica depender únicamente de la función “Reemplazar” (.replace() / gsub()) para quitar espacios accidentales al inicio o final de un texto en bases de datos geográficas grandes, en lugar de usar funciones dedicadas como strip() o trimws()?
+# 1 - ¿Por qué es una mala práctica depender únicamente de la función “Reemplazar” (.replace() / gsub()) en lugar de usar funciones dedicadas como strip() o trimws()?
+
 Por qué NO depender solo de “Reemplazar” para quitar espacios. Depender solo de reemplazo (replace/gsub) para limpiar espacios de borde en bases de datos grandes es mala práctica porque:
 
 -Es fácil definir un patrón incompleto y dejar casos fuera (tabs, saltos de línea, combinaciones de whitespace). 
@@ -109,7 +99,7 @@ Por qué NO depender solo de “Reemplazar” para quitar espacios. Depender sol
 -Funciones dedicadas como strip()/trimws() son más claras, más legibles y reducen riesgo de errores de regex/patrones.
 
 
-## Ejercicio 2 — Impacto de NO convertir texto a Float antes de WKT
+## 2 — Impacto de NO convertir texto a Float antes de WKT
 
 Si se construye el WKT concatenando texto sin convertir a número decimal:
 
